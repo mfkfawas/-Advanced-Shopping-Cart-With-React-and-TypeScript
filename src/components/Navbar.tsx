@@ -19,7 +19,7 @@ const Navbar = () => {
         </Nav>
         <Button
           style={{ width: '3rem', height: '3rem', position: 'relative' }}
-          variant='outline-primary'
+          variant='outline-secondary'
           className='rounded-circle'
         >
           <svg
