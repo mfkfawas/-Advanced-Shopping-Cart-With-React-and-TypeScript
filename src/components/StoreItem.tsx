@@ -9,7 +9,7 @@ interface StoreItemsProps {
 }
 
 const StoreItem = ({ id, name, price, imgUrl }: StoreItemsProps) => {
-  const quantity = 0;
+  const quantity = 1;
   return (
     <Card className='h-100'>
       <Card.Img
