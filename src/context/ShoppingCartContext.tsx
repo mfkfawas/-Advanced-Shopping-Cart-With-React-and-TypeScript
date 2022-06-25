@@ -8,6 +8,9 @@ interface ShoppingCartContext {
   increaseCartQuantity: (id: number) => void;
   decreaseCartQuantity: (id: number) => void;
   removeFromCart: (id: number) => void;
+  openOrCloseCart: () => void;
+  cartQuantity: number;
+  cartItems: CartItem[];
 }
 
 interface CartItem {
@@ -23,6 +26,7 @@ export function useShoppingCart() {
 
 export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [isOpen, setIsOpen] = useState(false);
 
   function getItemQuantity(id: number) {
     return cartItems.find(item => item.id === id)?.quantity || 0;
@@ -64,6 +68,10 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
     setCartItems(currItems => currItems.filter(item => item.id !== id));
   }
 
+  const openOrCloseCart = () => setIsOpen(!isOpen);
+
+  const cartQuantity = cartItems.reduce((quantity, item) => item.quantity + quantity, 0);
+
   return (
     <shoppingCartContext.Provider
       value={{
@@ -71,6 +79,9 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
         increaseCartQuantity,
         decreaseCartQuantity,
         removeFromCart,
+        openOrCloseCart,
+        cartItems,
+        cartQuantity,
       }}
     >
       {children}
