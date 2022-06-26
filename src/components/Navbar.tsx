@@ -6,7 +6,7 @@ import { useShoppingCart } from '../context/ShoppingCartContext';
 const Navbar = () => {
   const { openOrCloseCart, cartQuantity } = useShoppingCart();
   return (
-    <NavbarBs className='bg-white shadow-sm mb-3'>
+    <NavbarBs className='bg-white shadow-sm mb-3' style={{ height: '4rem' }}>
       <Container>
         <Nav className='me-auto'>
           <Nav.Link to='/' as={NavLink}>
